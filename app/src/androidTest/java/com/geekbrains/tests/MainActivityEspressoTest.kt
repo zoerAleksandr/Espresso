@@ -27,6 +27,21 @@ class MainActivityEspressoTest {
     }
 
     @Test
+    fun activitySearchEditText_Test(){
+        onView(withId(R.id.searchEditText))
+            .check(matches(isCompletelyDisplayed()))
+            .check(matches(withHint(R.string.search_hint)))
+    }
+
+    @Test
+    fun activityToDetailsButton_Test(){
+        onView(withId(R.id.toDetailsActivityButton))
+            .check(matches(isCompletelyDisplayed()))
+            .check(matches(withText(R.string.to_details)))
+            .check(matches(isClickable()))
+    }
+
+    @Test
     fun activitySearch_IsWorking() {
         onView(withId(R.id.searchEditText)).perform(click())
         onView(withId(R.id.searchEditText)).perform(replaceText("algol"), closeSoftKeyboard())
@@ -40,7 +55,7 @@ class MainActivityEspressoTest {
         }
     }
 
-    private fun delay(): ViewAction? {
+    private fun delay(): ViewAction {
         return object : ViewAction {
             override fun getConstraints(): Matcher<View> = isRoot()
             override fun getDescription(): String = "wait for $2 seconds"
